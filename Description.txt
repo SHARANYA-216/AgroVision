@@ -1,0 +1,124 @@
+🌾 AgroVision – AI Crop Health & Yield Prediction System
+📌 Project Overview
+
+AgroVision is a full-stack AI-powered web application designed to assist farmers in monitoring crop health and predicting agricultural yield using Machine Learning and Deep Learning techniques.
+
+The system enables users to upload crop images for disease detection and enter environmental and soil parameters to estimate crop yield. AgroVision aims to promote data-driven farming practices and improve agricultural productivity.
+
+🎯 Problem Statement
+
+Agriculture is highly dependent on environmental factors such as rainfall, temperature, soil type, and fertilizer usage. Farmers often lack access to intelligent systems that can:
+
+Detect crop diseases at early stages
+
+Predict crop yield accurately
+
+Provide insights based on real-time input data
+
+This leads to reduced productivity, financial losses, and inefficient resource usage.
+
+💡 Proposed Solution
+
+AgroVision provides:
+
+🌿 Crop Disease Detection using Deep Learning (CNN)
+
+📊 Crop Yield Prediction using Machine Learning Regression Models
+
+🧪 Input-based agricultural analysis
+
+🌐 User-friendly web interface for easy access
+
+The system integrates AI models with a web-based frontend and backend to deliver real-time predictions.
+
+🛠️ Technologies Used
+🔹 Frontend
+
+HTML
+
+CSS
+
+JavaScript
+
+🔹 Backend
+
+Python
+
+Flask
+
+🔹 Machine Learning / Deep Learning
+
+TensorFlow / Keras
+
+Scikit-learn
+
+OpenCV
+
+🔹 Database
+
+MySQL / SQLite
+
+🧠 System Features
+1️⃣ Crop Disease Detection
+
+User uploads crop leaf image
+
+Model analyzes image
+
+Predicts disease name with confidence score
+
+2️⃣ Crop Yield Prediction
+
+User enters:
+
+Rainfall
+
+Temperature
+
+Soil type
+
+Fertilizer usage
+
+Model predicts expected crop yield
+
+3️⃣ Smart Agricultural Insights
+
+Data-driven recommendations
+
+Improved decision-making support
+
+🏗️ System Architecture
+
+Frontend (HTML/CSS/JS)
+⬇
+Backend (Flask API)
+⬇
+AI Models (Disease + Yield Prediction)
+⬇
+Database
+
+👥 Team Structure
+
+This project is developed collaboratively by a team of four members with individual responsibilities:
+
+AI Model Development (Disease Detection)
+
+Machine Learning Model Development (Yield Prediction)
+
+Backend API Development
+
+Frontend Development & UI Design
+
+🚀 Future Enhancements
+
+Weather API integration
+
+Real-time monitoring dashboard
+
+Mobile-friendly version
+
+Deployment on cloud platform
+
+🌍 Impact
+
+AgroVision aims to support precision agriculture by enabling smarter crop management, early disease detection, and improved yield forecasting through AI-driven insights.
