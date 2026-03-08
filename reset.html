@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset Password</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/060/114/028/small/rich-soil-texture-at-golden-hour-agriculture-and-farming-background-photo.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .box {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            padding-right:60px;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #16305a;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color:aliceblue;
+        }
+        h2{
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+<h2>Reset Password</h2>
+
+<form id="resetForm">
+    <input type="email" id="resetEmail" placeholder="Enter Registered Email" required>
+    <input type="password" id="newPassword" placeholder="Enter New Password" required>
+    <button type="submit">Reset Password</button>
+    <p id="resetMessage"></p>
+    <a href="login.html">Login Page</a>
+</form>
+</div>
+<script>
+document.getElementById("resetForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const email = document.getElementById("resetEmail").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+    const message = document.getElementById("resetMessage");
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const userIndex = users.findIndex(user => user.email === email);
+
+    if (userIndex === -1) {
+        message.style.color = "red";
+        message.innerText = "Email not registered!";
+        return;
+    }
+
+    // Update password
+    users[userIndex].password = newPassword;
+    localStorage.setItem("users", JSON.stringify(users));
+
+    message.style.color = "green";
+    message.innerText = "Password updated successfully!";
+
+});
+</script>
+
+</body>
+</html>
