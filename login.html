@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-image: url("https://media.istockphoto.com/id/1319312695/photo/aerial-view-of-bright-green-agricultural-farm-field-with-growing-rapeseed-plants-at-sunset.jpg?s=612x612&w=0&k=20&c=-KezYsHpRMYh_gn2b1kcgbn63yM1lsqPKFbbCg16_pk=");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .box {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            padding-right:60px;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #16305a;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color:aliceblue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Enter Email" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
+        <p id="message"></p>
+    </form>
+    <a href="register.html">Create new account</a>
+    <a href="reset.html">Forgot Password?</a>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const message = document.getElementById("message");
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(user => user.email === email);
+
+    if (!user) {
+        message.style.color = "red";
+        message.innerText = "Email not registered!";
+        return;
+    }
+
+    if (user.password !== password) {
+        message.style.color = "red";
+        message.innerText = "Incorrect password!";
+        return;
+    }
+
+    localStorage.setItem("loggedInUser", email);
+
+    message.style.color = "green";
+    message.innerText = "Login successful!";
+
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 1000);
+});
+</script>
+
+</body>
+</html>

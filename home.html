@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+*{
+    border:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body {
+    overflow: hidden;
+}
+.video-container{
+    position: relative;
+    width: 100%;
+}
+.bg-video{
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+}
+.navbar{
+    position: fixed;
+    top: 0px;
+    left: 0;
+    height:70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+}
+.navbar ul{
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+.navbar a:hover {
+    text-decoration: underline;
+    color: rgb(199, 130, 26);
+}
+.navbar a.active {
+    color:rgb(199, 130, 26);
+}
+.navbar p:hover{
+    transform: scale(1.1);
+    color: rgb(199, 130, 26);
+    margin-top: 15px;
+}
+.navbar button{
+    padding: 10px 20px;
+    background: rgb(214, 14, 14);
+    color: white;
+    border: 0px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.logo{
+    width: 170px;
+    height: 100px;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+    <div class="video-container">
+
+    <video autoplay muted loop class="bg-video">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <nav class="navbar">
+        <img src="logo.png" class="logo">
+        <p>Hello, Farmer!</p>
+
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="diseaseprediction.html">Disease prediction</a></li>
+            <li><a href="yieldprediction.html">Yield prediction</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button onclick="logout()">Log Out➜]</button>
+    </nav>
+
+</div>
+<script>
+const loggedInUser = localStorage.getItem("loggedInUser");
+if (!loggedInUser) {
+    window.location.href = "login.html";
+}
+function logout() {
+localStorage.removeItem("loggedInUser");
+window.location.href = "login.html";
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split('/').pop();
+    const links = document.querySelectorAll('.navbar a');
+    
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>
+</body>
+</html>

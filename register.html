@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-image: url("https://media.istockphoto.com/id/908833482/photo/aerial-view-clouds-over-over-green-agricultural-fields.jpg?s=612x612&w=0&k=20&c=Hr9Z8INVE72xts3BxFhN_q6QlpWHZVTeGRR5nK3Jj8U=");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .box {
+            background:transparent;
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+            padding-right: 60px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 107%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #16305a;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Register</h2>
+    <form id="registerForm">
+        <input type="email" id="regEmail" placeholder="Enter Email" required>
+        <input type="password" id="regPassword" placeholder="Enter Password" required>
+        <button type="submit">Register</button>
+        <p id="regMessage"></p>
+    </form>
+    <a href="login.html">Already have an account? Login</a>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("regEmail").value.trim();
+    const password = document.getElementById("regPassword").value.trim();
+    const message = document.getElementById("regMessage");
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const existingUser = users.find(user => user.email === email);
+
+    if (existingUser) {
+        message.style.color = "red";
+        message.innerText = "Email already registered!";
+        return;
+    }
+
+    users.push({ email: email, password: password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    message.style.color = "green";
+    message.innerText = "Registration successful!";
+
+    localStorage.setItem("loggedInUser", email);
+
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 1000);
+    document.getElementById("registerForm").reset();
+});
+</script>
+
+</body>
+</html>
