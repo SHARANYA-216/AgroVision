@@ -13,15 +13,6 @@
 body {
     overflow: hidden;
 }
-.video-container{
-    position: relative;
-    width: 100%;
-}
-.bg-video{
-    width: 100%;
-    height: 800px;
-    object-fit: cover;
-}
 .navbar{
     position: fixed;
     top: 0px;
@@ -72,6 +63,205 @@ body {
     height: 100px;
     margin-top: 10px;
 }
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    transition: right 0.3s;
+    padding: 70px 20px 20px;
+    box-sizing: border-box;
+}
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.side-menu ul li {
+    margin: 20px 0;
+}
+.side-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.side-menu a:hover {
+    color: rgb(199, 130, 26);
+}
+.side-menu button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgb(214, 14, 14);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+body {
+  background: linear-gradient(135deg, #96c8d3, #1a5c6e);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 95%;
+  max-width: 1200px;
+  height: 65vh;
+  display: flex;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  color: white;
+}
+
+.sidebar .logo {
+  margin-bottom: 40px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin: 20px 0;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  opacity: 1;
+  color: #7fabb5;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 40px;
+  color: white;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #6696a4;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #9333ea;
+}
+
+.weather-card {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.weather-card h1 {
+  font-size: 28px;
+}
+
+.weather-card h2 {
+  font-size: 50px;
+  margin: 10px 0;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main {
+    padding: 20px;
+  }
+}
+/*phone*/
+@media (max-width: 1150px) {
+    .navbar {
+        height: auto;
+        padding: 10px;
+        display:flex;
+    }
+    .navbar ul {
+        display: none; 
+    }
+    .hamburger {
+        display: block;
+    }
+    .logo {
+        width: 140px;
+        height: 100px;
+    }
+    .navbar p {
+        margin-bottom: 10px;
+    }
+    .navbar button {
+        display: none; 
+    }
+}
 </style>
 </head>
 <body>
@@ -88,10 +278,74 @@ body {
             <li><a href="about.html">About</a></li>
         </ul>
         <button onclick="logout()">Log Out➜]</button>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
+     <div class="side-menu" id="sideMenu">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="diseaseprediction.html">Disease prediction</a></li>
+            <li><a href="yieldprediction.html">Yield prediction</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button onclick="logout()">Log Out➜]</button>
+    </div>
 
 </div>
+<div class="container">
+    <main class="main">
+
+      <div class="search-box">
+        <input type="text" id="cityInput" placeholder="Search city..." />
+        <button onclick="getWeather()">Search</button>
+      </div>
+
+      <div class="weather-card">
+        <h1 id="cityName">City</h1>
+        <h2 id="temp">--°C</h2>
+        <p id="desc">Weather Description</p>
+      </div>
+
+      <div class="highlights">
+
+        <div class="card">
+          <h3>Humidity</h3>
+          <p id="humidity">--%</p>
+        </div>
+
+        <div class="card">
+          <h3>Wind Speed</h3>
+          <p id="wind">-- m/s</p>
+        </div>
+
+        <div class="card">
+          <h3>Pressure</h3>
+          <p id="pressure">-- hPa</p>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
 <script>
+const loggedInUser = localStorage.getItem("loggedInUser");
+if (!loggedInUser) {
+    window.location.href = "login.html";
+}
+function logout() {
+localStorage.removeItem("loggedInUser");
+window.location.href = "login.html";
+}
+function toggleMenu() {
+    const menu = document.getElementById('sideMenu');
+    if (menu.style.right === '0px') {
+        menu.style.right = '-250px';
+    } else {
+        menu.style.right = '0px';
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop();
     const links = document.querySelectorAll('.navbar a');
@@ -102,6 +356,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+const apiKey = "37af70b9f1005186ba907b715ae2b003";
+
+async function getWeather() {
+  const city = document.getElementById("cityInput").value;
+
+  if (city === "") {
+    alert("Please enter a city name");
+    return;
+  }
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.cod !== 200) {
+      alert("City not found");
+      return;
+    }
+
+    document.getElementById("cityName").innerText = data.name;
+    document.getElementById("temp").innerText = `${Math.round(data.main.temp)}°C`;
+    document.getElementById("desc").innerText = data.weather[0].description;
+    document.getElementById("humidity").innerText = `${data.main.humidity}%`;
+    document.getElementById("wind").innerText = `${data.wind.speed} m/s`;
+    document.getElementById("pressure").innerText = `${data.main.pressure} hPa`;
+
+  } catch (error) {
+    alert("Error fetching data");
+  }
+}
 </script>
 </body>
 </html>

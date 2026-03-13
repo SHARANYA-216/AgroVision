@@ -1,12 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+<style>
+    body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+    overflow-x: hidden;
+}
+.hero{
+    background:linear-gradient(135deg,#80d9bb,#066440);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+    transition: transform 0.4s ease;
+}
+.hero:hover{
+    transform: scale(1.05);
+}
+.hero h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+.hero p{
+    font-size:18px;
+}
+.about-container{
+    width:80%;
+    margin:auto;
+    margin-top:40px;
+}
+.card{
+    background:white;
+    padding:30px;
+    margin-bottom:25px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+.card h2{
+    color:#1f9d72;
+    margin-bottom:10px;
+    border-left:4px solid #1f9d72;
+    padding-left:10px;
+}
+.card p{
+    line-height:1.6;
+    color:#444;
+}
+.card ul{
+    list-style:none;
+    padding-left:0;
+}
+.card ul li{
+    margin:10px 0;
+    font-size:16px;
+}
+@media(max-width:768px){
+.about-container{
+    width:90%;
+}
+.hero h1{
+    font-size:30px;
+}
+}
+</style>
 </head>
 <body>
-    <h1>About AgroVision</h1>
-    <p>Welcome to AgroVision, your trusted partner in agricultural innovation!</p>
+<section class="hero">
+    <h1>Welcome to AgroVision!</h1>
+    <p>Empowering farmers with smart and sustainable technology.</p>
+</section>
+<section class="about-container">
+
+    <div class="card">
+        <h2>Who We Are</h2>
+        <p>
+        AgroVision is an innovative agriculture platform designed to help farmers
+        improve crop productivity using modern technology. Our system combines
+        artificial intelligence, weather analytics, and smart monitoring to
+        support sustainable and efficient farming practices.
+        </p>
+    </div>
+    <div class="card">
+        <h2>Our Focus</h2>
+        <ul>
+            <li>✔ Smart irrigation based on weather conditions</li>
+            <li>✔ AI powered crop disease detection</li>
+            <li>✔ Real-time agricultural insights</li>
+            <li>✔ Sustainable farming techniques</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Our Approach</h2>
+        <p>
+        AgroVision uses real-time data, machine learning models, and modern
+        web technologies to provide farmers with actionable insights.
+        By combining weather prediction, crop monitoring, and disease
+        detection, we help farmers make informed decisions that increase
+        yield and reduce losses.
+        </p>
+    </div>
+</section>
 </body>
 </html>

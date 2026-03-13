@@ -19,7 +19,7 @@ body {
 }
 .bg-video{
     width: 100%;
-    height: 800px;
+    height: 100vh;
     object-fit: cover;
 }
 .navbar{
@@ -41,6 +41,7 @@ body {
     display: flex;
     list-style: none;
     gap: 40px;
+    flex-wrap: wrap;
 }
 .navbar a {
     color: white;
@@ -72,6 +73,73 @@ body {
     height: 100px;
     margin-top: 10px;
 }
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    transition: right 0.3s;
+    padding: 70px 20px 20px;
+    box-sizing: border-box;
+}
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.side-menu ul li {
+    margin: 20px 0;
+}
+.side-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.side-menu a:hover {
+    color: rgb(199, 130, 26);
+}
+.side-menu button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgb(214, 14, 14);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/*phone*/
+@media (max-width: 1150px) {
+    .navbar {
+        height: auto;
+        padding: 10px;
+        display:flex;
+    }
+    .navbar ul {
+        display: none; 
+    }
+    .hamburger {
+        display: block;
+    }
+    .logo {
+        width: 140px;
+        height: 100px;
+    }
+    .navbar p {
+        margin-bottom: 10px;
+    }
+    .navbar button {
+        display: none; 
+    }
+}
 </style>
 </head>
 <body>
@@ -94,7 +162,20 @@ body {
             <li><a href="about.html">About</a></li>
         </ul>
         <button onclick="logout()">Log Out➜]</button>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
+
+    <div class="side-menu" id="sideMenu">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="diseaseprediction.html">Disease prediction</a></li>
+            <li><a href="yieldprediction.html">Yield prediction</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button onclick="logout()">Log Out➜]</button>
+    </div>
 
 </div>
 <script>
@@ -105,6 +186,14 @@ if (!loggedInUser) {
 function logout() {
 localStorage.removeItem("loggedInUser");
 window.location.href = "login.html";
+}
+function toggleMenu() {
+    const menu = document.getElementById('sideMenu');
+    if (menu.style.right === '0px') {
+        menu.style.right = '-250px';
+    } else {
+        menu.style.right = '0px';
+    }
 }
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop();
